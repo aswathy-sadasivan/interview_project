@@ -43,6 +43,12 @@ app.post('/update-stock', (req, res) => {
     res.json({ message: "Stock updated", product });
 });
 
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-});
+// Export the Express API
+module.exports = app;
+
+// Only listen if running standalone (not required for Vercel)
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`Server running on http://localhost:${PORT}`);
+    });
+}

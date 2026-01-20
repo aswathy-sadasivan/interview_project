@@ -11,7 +11,8 @@ function App() {
   const [updatingId, setUpdatingId] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
 
-  const API_URL = 'http://localhost:5000'
+  // In production (Vercel), use relative path. In dev (Vite), proxy handles it.
+  const API_URL = '/api'
 
   useEffect(() => {
     fetchProducts()
