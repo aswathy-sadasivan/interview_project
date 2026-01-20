@@ -11,8 +11,10 @@ function App() {
   const [updatingId, setUpdatingId] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
 
-  // In production (Vercel), use relative path. In dev (Vite), proxy handles it.
-  const API_URL = '/api'
+  // In production (Render), use the provided URL. In dev, keep using local proxy or localhost.
+  const API_URL = import.meta.env.PROD
+    ? 'https://interview-project-t06c.onrender.com'
+    : '/api';
 
   useEffect(() => {
     fetchProducts()
