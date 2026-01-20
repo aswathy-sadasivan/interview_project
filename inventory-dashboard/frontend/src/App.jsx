@@ -19,6 +19,7 @@ function App() {
   }, [])
 
   const fetchProducts = async () => {
+    console.log("Fetching products from:", `${API_URL}/products`);
     try {
       setLoading(true)
       const response = await axios.get(`${API_URL}/products`)
