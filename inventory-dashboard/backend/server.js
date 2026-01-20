@@ -17,13 +17,16 @@ let products = [
     { id: 7, name: "Webcam", price: 59.99, stock: 1, lowStockThreshold: 3 }
 ];
 
+// Use a Router to handle paths
+const router = express.Router();
+
 // GET /products
-app.get('/products', (req, res) => {
+router.get('/products', (req, res) => {
     res.json(products);
 });
 
 // POST /update-stock
-app.post('/update-stock', (req, res) => {
+router.post('/update-stock', (req, res) => {
     const { id, newQuantity } = req.body;
 
     if (id === undefined || newQuantity === undefined) {
@@ -42,6 +45,10 @@ app.post('/update-stock', (req, res) => {
     product.stock = newQuantity;
     res.json({ message: "Stock updated", product });
 });
+
+// Mount the router on both /api (for Vercel) and / (for local)
+app.use('/api', router);
+app.use('/', router);
 
 // Export the Express API
 module.exports = app;
